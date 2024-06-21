@@ -15,7 +15,7 @@ function Input({ type = "text", handleTextValue, placeholder, ...props }) {
   };
 
   return (
-    <div className={` w-[270px]  flex items-center border rounded-md shadow-sm transition duration-300  ease-in-out ${isFocused ? 'border-yellow-500' : 'border-gray-300'}`}>
+    <div className={` w-[270px] mt-2  flex items-center border rounded-md shadow-sm transition duration-300  ease-in-out ${isFocused ? 'border-yellow-500' : 'border-gray-300'}`}>
       <input
         type={type}
         className="text-white w-full bg-slate-900 px-4 py-2 border-none focus:ring-0 focus:outline-none rounded-md"

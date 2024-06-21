@@ -24,13 +24,13 @@ const VipCard = () => {
               <label className="text-yellow-800 text-[11px] font-sans font-semibold text-start">
                 Deposit for promotion
               </label>
-              <div className="bg-yellow-600 h-[10px] rounded-2xl w-[260px]"></div>
+              <div className="bg-yellow-600 h-[10px] rounded-2xl w-[120px] ml-2"></div>
             </div>
             <div className="flex flex-row justify-center items-center">
               <label className="text-yellow-800 text-[11px] font-sans font-semibold text-start">
                 Bet for promotion
               </label>
-              <div className="bg-yellow-600 h-[10px] rounded-2xl w-[250px]"></div>
+              <div className="bg-yellow-600 h-[10px] rounded-2xl w-[120px] ml-2"></div>
             </div>
           </div>
         </div>

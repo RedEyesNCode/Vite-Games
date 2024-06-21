@@ -38,8 +38,8 @@ const CBetBanner = () => {
   };
 
   return (
-    <div className="relative">
-      <div className="flex overflow-x-auto">
+    <div className="relative w-screen">
+      <div className="flex">
         {images.map((image, index) => (
           <div
             key={index}

@@ -15,7 +15,7 @@ const CBetBottomNav = ({handleItemClick}) => {
   ];
 
   return (
-        <div className=" min-w-fit  left-0    bg-gray-800 p-2 flex justify-around">
+        <div className=" min-w-fit mb-5  left-0 w-screen    bg-gray-800 p-2 flex justify-around">
         {navItems.map((item, index) => (
             <a
             key={index}

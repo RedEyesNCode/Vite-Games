@@ -26,7 +26,7 @@ const LoginScreen = () => {
 
   return (
     <div className="fixed top-0 left-0 w-full h-full bg-slate-900 overflow-hidden flex items-center justify-center">
-      <div className="max-w-[480px]  border-[1px] border-slate-600 h-screen mx-auto flex flex-col items-center bg-slate-800 p-2">
+      <div className="w-screen border-[1px] border-slate-600 h-screen mx-auto flex flex-col items-center bg-slate-800 p-2">
         <ToastContainer 
           position="top-center"
           autoClose={3000} 

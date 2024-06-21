@@ -10,7 +10,7 @@ import { PiConfettiDuotone } from "react-icons/pi";
 
 export const CbetOffers = (props) => {
   return (
-    <div className="bg-slate-900 flex flex-row h-screen">
+    <div className="bg-slate-900 flex flex-row h-screen w-screen">
       <div className="flex flex-col">
         <button className="bg-yellow-400 flex flex-col   items-center justify-center m-1 px-6  text-[11px] text-brown-600 font-semibold rounded-xl font-mono shadow-md hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50">
           <PiConfettiDuotone className="items-center h-[25px] w-[25px]" />

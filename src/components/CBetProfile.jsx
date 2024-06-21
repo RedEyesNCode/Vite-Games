@@ -24,7 +24,7 @@ import { SiAboutdotme, SiLootcrate } from "react-icons/si";
 
 export const CBetProfile = () => {
   return (
-    <div className="relative bg-slate-900 flex flex-col h-screen w-[400px]">
+    <div className="relative overflow-x-hidden bg-slate-900 flex flex-col ">
       <SvgSymbols />
 
       {/* Background Section */}
@@ -34,7 +34,7 @@ export const CBetProfile = () => {
       />
 
       {/* Profile Information & Tabs (Overlayed Content) */}
-      <div className="p-2 flex flex-col   w-full z-10">
+      <div className="p-2 flex-col   w-screen z-10">
         <div className="flex flex-col items-end w-full">
           <div className="flex flex-row text-white">
             <div className="flex flex-col items-center justify-center">

@@ -16,7 +16,7 @@ function PhoneInput({handleTextValue}) {
 
   return (
     <div 
-      className={`flex items-center border rounded-md shadow-sm transition duration-300 ease-in-out ${
+      className={`flex w-full mt-2 items-center border rounded-md shadow-sm transition duration-300 ease-in-out ${
         isFocused ? 'border-yellow-500' : 'border-gray-300'
       }`}
     >
@@ -27,7 +27,7 @@ function PhoneInput({handleTextValue}) {
       </div>
       <input
         type="tel"
-        className="text-white w-full bg-slate-900 px-4 py-2 border-none focus:ring-0 focus:outline-none rounded-r-md"
+        className="text-white bg-transparent w-full bg-slate-900 px-4 py-2 border-none focus:ring-0 focus:outline-none rounded-r-md"
         placeholder="Mobile Number"
         onFocus={handleFocus}
         onChange={(e)=> handleTextEvent(e)}
