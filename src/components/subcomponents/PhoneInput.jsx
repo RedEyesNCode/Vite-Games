@@ -16,7 +16,7 @@ function PhoneInput({handleTextValue}) {
 
   return (
     <div 
-      className={`flex w-full mt-2 items-center border rounded-md shadow-sm transition duration-300 ease-in-out ${
+      className={`flex w-fit mt-2 items-center border rounded-md shadow-sm transition duration-300 ease-in-out ${
         isFocused ? 'border-yellow-500' : 'border-gray-300'
       }`}
     >

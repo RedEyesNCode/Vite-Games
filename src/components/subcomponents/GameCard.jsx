@@ -1,18 +1,18 @@
 import React from 'react';
-import  markImage from './assets/ic_mark.png'
-import oneToken from './assets/ic_one_token.png'
-import zeroToken from './assets/ic_zero_token.png'
-import twoToken from './assets/ic_two_token.png'
-import threeToken from './assets/ic_three_token.png'
-import fourToken from './assets/ic_four_token.png'
-import fiveToken from './assets/ic_five_token.png'
-import sixToken from './assets/ic_six_token.png'
-import sevenToken from './assets/ic_seven_token.png'
-import eightToken from './assets/ic_eight_token.png'
-import nineToken from './assets/ic_nine_token.png'
+import  markImage from '../assets/ic_mark.png'
+import oneToken from '../assets/ic_one_token.png'
+import zeroToken from '../assets/ic_zero_token.png'
+import twoToken from '../assets/ic_two_token.png'
+import threeToken from '../assets/ic_three_token.png'
+import fourToken from '../assets/ic_four_token.png'
+import fiveToken from '../assets/ic_five_token.png'
+import sixToken from '../assets/ic_six_token.png'
+import sevenToken from '../assets/ic_seven_token.png'
+import eightToken from '../assets/ic_eight_token.png'
+import nineToken from '../assets/ic_nine_token.png'
 function GameCard() {
   return (
-    <div className=" bg-gradient-to-b from-custom-yellow to-custom-brown rounded-[20px] p-2 shadow-md flex justify-between items-center w-[470px] mt-2 mx-2 px-3">
+    <div className=" w-fit m-2 bg-gradient-to-b  from-custom-yellow to-custom-brown rounded-[20px] p-2 shadow-md flex justify-between items-center">
 
       {/* Left Side - How to Play */}
 

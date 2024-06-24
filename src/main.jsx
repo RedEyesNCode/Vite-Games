@@ -6,6 +6,8 @@ import LoginScreen from './components/LoginScreen.jsx';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import WingoDashboard from './components/subcomponents/WingoDashboard.jsx';
 import CBetDashboard from './components/CBetDashboard.jsx';
+import PhaserGame from './phaser/PhaserGame.jsx';
+import RegisterScreen from './components/RegisterScreen.jsx';
 
 ReactDOM.render(
   
@@ -14,8 +16,10 @@ ReactDOM.render(
      
       <Route exact path="/" element={<LoginScreen />} />
       <Route exact path="/wingodashboard" element={<WingoDashboard />} />
+      <Route exact path="/cbetregister" element={<RegisterScreen />} />
 
       <Route exact path="/cbet" element={<CBetDashboard />} />
+      <Route exact path="/dragontiger" element={<PhaserGame />} />
 
      
     </Routes>

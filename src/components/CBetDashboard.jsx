@@ -35,6 +35,7 @@ import boomlegend from "./assets/boom_legend_image.png";
 import chinagame from "./assets/china_game_image.png";
 import pheonix from "./assets/pheonix_rises.png";
 import circleDelight from "./assets/circle_delight_image.png";
+import { useNavigate } from "react-router-dom";
 
 import megafishing from "./assets/mega_fishing_image.png";
 import royalfishing from "./assets/royal_fishing_image.png";
@@ -60,6 +61,7 @@ import CBetFooter from "./CBetFooter";
 import CBetSideNav from "./CBetSideNav";
 import GlobalLoginDialog from "./subcomponents/GlobalLoginDialog";
 import GlobalRegisterDialog from "./subcomponents/GlobalRegisterDialog";
+import PhaserGame from "../phaser/PhaserGame";
 const imageUrls = [
   wingo,
   five_d,
@@ -128,8 +130,23 @@ export const CBetDashboard = (props) => {
 
   const [isRegisterDialog, setRegisterDialog] = useState(false);
 
+  const [isDragonTigerGame,setDragonTigerGame] = useState(false);
+  const navigate = useNavigate();
+
+
   const handleShowRegisterDialog = () => {
     setRegisterDialog(true);
+  };
+  const handleGameShow = (url) => {
+    if(url=="/src/components/assets/wingo_image.png"){
+      //wingo_dashboard
+      navigate('/wingodashboard')
+    }else if(url=="/src/components/assets/dragon_tiger_image.jpg"){
+      //dragon-tiger
+      navigate('/dragontiger')
+    }
+    
+
   };
 
   const handleShowLoginDialog = () => {
@@ -212,7 +229,7 @@ export const CBetDashboard = (props) => {
                 />
               </div>
               <GameSlideMenu />
-              <DynamicGameMenuCard imageUrls={imageUrls} />
+              <DynamicGameMenuCard imageUrls={imageUrls} handleGameClick={(url) =>handleGameShow(url)} />
 
               <div className="w-full h-[2px] bg-slate-600 mt-2"></div>
 
@@ -304,6 +321,9 @@ export const CBetDashboard = (props) => {
               <CBetNav handleClickNav={() => setSideNavFrame(true)} />
               <CBetProfile />
             </div>
+          )}
+          {isDragonTigerGame && (
+            <PhaserGame/>
           )}
         </div>
 

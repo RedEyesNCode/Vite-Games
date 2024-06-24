@@ -23,6 +23,10 @@ import { AiFillSafetyCertificate } from "react-icons/ai";
 import { SiAboutdotme, SiLootcrate } from "react-icons/si";
 
 export const CBetProfile = () => {
+  const navigateWithdrawScreen = () => {
+
+    navigate
+  }
   return (
     <div className="relative overflow-x-hidden bg-slate-900 flex flex-col ">
       <SvgSymbols />
@@ -153,7 +157,7 @@ export const CBetProfile = () => {
         </div>
         <div className="bg-slate-800 w-full h-[15px] rounded-sm"></div>
         <div class="bg-slate-900 p-3 rounded-md flex items-center justify-between hover:bg-gray-700">
-          <div class="flex items-center space-x-2">
+          <div class="flex items-center space-x-2" onClick={navigateWithdrawScreen()}>
             <PiCreditCardDuotone class="text-yellow-400 text-lg" />
             <span class="text-white text-sm">Withdrawal Management</span>
           </div>

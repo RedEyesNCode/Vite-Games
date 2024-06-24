@@ -5,27 +5,44 @@ import ccbet from "./assets/ic_cc_bet.png";
 import Input from "./subcomponents/Input";
 import { useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for styling
+import { loginRedUser } from "../api/api_interface";
 
 
 const LoginScreen = () => {
   const [formData, setFormData] = useState({ number: "", password: "" });
   const navigate = useNavigate();
 
-  const handleClickLogin = () => {
+  const handleClickLogin = async () => {
     if (!formData.number || !formData.password) {
       toast.error("Please fill in all fields");
       return;
+    }      navigate("/cbet"); 
+
+    const loginUserResponse = await loginRedUser(formData);
+    if(loginUserResponse.code==200){
+       // Simulate Login (Replace with your actual login logic)
+    setTimeout(() => {
+      toast.success("Login successful!");
+    }, 1000);
+
+    }else{
+      toast.error('Login Failed');
     }
+
+   
+  };
+  const handleRegisterClick = () => {
+   
 
     // Simulate Login (Replace with your actual login logic)
     setTimeout(() => {
-      toast.success("Login successful!");
-      navigate("/cbet"); 
-    }, 1000);
+      toast.info("Create new account!");
+      navigate("/cbetregister"); 
+    }, 100);
   };
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full bg-slate-900 overflow-hidden flex items-center justify-center">
+    <div className="fixed top-0 left-0 w-screen max-w-[480px] h-screen bg-slate-900 overflow-hidden flex items-center justify-center">
       <div className="w-screen border-[1px] border-slate-600 h-screen mx-auto flex flex-col items-center bg-slate-800 p-2">
         <ToastContainer 
           position="top-center"
@@ -40,7 +57,7 @@ const LoginScreen = () => {
         <h2 className="text-white text-[17px] font-semibold text-center mt-4">Login</h2>
         <div className="h-[20px]"></div>
 
-        <div className="flex flex-col items-start text-white w-full">
+        <div className="flex flex-col items-center text-white w-full ">
           <label>Mobile Number</label>
           <PhoneInput
             handleTextValue={(e) => setFormData({ ...formData, number: e })}
@@ -48,7 +65,7 @@ const LoginScreen = () => {
         </div>
         <div className="h-[20px]"></div>
 
-        <div className="flex flex-col items-start text-white w-full">
+        <div className="flex flex-col items-center text-white w-full">
           <label>Password</label>
           <Input
             handleTextValue={(e) => setFormData({ ...formData, password: e })}
@@ -66,7 +83,7 @@ const LoginScreen = () => {
             Login
           </button>
           <div className="h-[20px]"></div>
-          <button className="border-[1px] border-yellow-400 w-full text-white font-semibold py-2 px-8 rounded-xl shadow-md hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50">
+          <button onClick={handleRegisterClick} className="border-[2px] border-yellow-400 w-full text-black font-semibold py-2 px-8 rounded-xl shadow-md">
             Register
           </button>
         </div>
