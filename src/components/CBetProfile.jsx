@@ -25,7 +25,7 @@ import { SiAboutdotme, SiLootcrate } from "react-icons/si";
 export const CBetProfile = () => {
   const navigateWithdrawScreen = () => {
 
-    navigate
+    
   }
   return (
     <div className="relative overflow-x-hidden bg-slate-900 flex flex-col ">

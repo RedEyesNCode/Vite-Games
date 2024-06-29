@@ -68,7 +68,7 @@ const RegisterScreen = () => {
     }
   };
   return (
-    <div className="fixed top-0 left-0 w-full h-full overflow-x-hidden overflow-y-auto bg-slate-900 overflow-hidden flex items-center justify-center">
+    <div className="fixed max-w-[480px] top-0 left-0 w-full h-full overflow-x-hidden overflow-y-auto bg-slate-900 overflow-hidden flex items-center justify-center">
       
       <div className=" border-[1px] border-slate-600 flex flex-col items-center justify-center bg-slate-800 p-2">
       <img className="items-center ml-5 pl-2 translate-x-8" src={ccbet}></img>

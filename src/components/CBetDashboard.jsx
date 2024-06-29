@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CBetNav from "./CBetNav";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import CBetBanner from "./subcomponents/CBetBanner";
 import jackpotbanner from "./assets/jackpot_image.png";
 import { PiSpeakerHighFill } from "react-icons/pi";
@@ -62,6 +62,8 @@ import CBetSideNav from "./CBetSideNav";
 import GlobalLoginDialog from "./subcomponents/GlobalLoginDialog";
 import GlobalRegisterDialog from "./subcomponents/GlobalRegisterDialog";
 import PhaserGame from "../phaser/PhaserGame";
+import LocalStorageManager from "../session/LocalStorageManager";
+import { LOCAL_STORAGE_KEY } from "../session/Constants";
 const imageUrls = [
   wingo,
   five_d,
@@ -133,6 +135,9 @@ export const CBetDashboard = (props) => {
   const [isDragonTigerGame,setDragonTigerGame] = useState(false);
   const navigate = useNavigate();
 
+  const userSession = LocalStorageManager.getItem(LOCAL_STORAGE_KEY.LOGIN_RESPONSE);
+
+
 
   const handleShowRegisterDialog = () => {
     setRegisterDialog(true);
@@ -140,6 +145,8 @@ export const CBetDashboard = (props) => {
   const handleGameShow = (url) => {
     if(url=="/src/components/assets/wingo_image.png"){
       //wingo_dashboard
+      window.alert(userSession.data.demoAmount);
+
       navigate('/wingodashboard')
     }else if(url=="/src/components/assets/dragon_tiger_image.jpg"){
       //dragon-tiger

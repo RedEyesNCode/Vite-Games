@@ -6,6 +6,8 @@ import Input from "./subcomponents/Input";
 import { useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for styling
 import { loginRedUser } from "../api/api_interface";
+import LocalStorageManager from "../session/LocalStorageManager";
+import { LOCAL_STORAGE_KEY } from "../session/Constants";
 
 
 const LoginScreen = () => {
@@ -16,11 +18,15 @@ const LoginScreen = () => {
     if (!formData.number || !formData.password) {
       toast.error("Please fill in all fields");
       return;
-    }      navigate("/cbet"); 
-
+    }     
     const loginUserResponse = await loginRedUser(formData);
     if(loginUserResponse.code==200){
        // Simulate Login (Replace with your actual login logic)
+       navigate('/cbet')
+       LocalStorageManager.setItem(LOCAL_STORAGE_KEY.LOGIN_RESPONSE,loginUserResponse);
+       
+
+
     setTimeout(() => {
       toast.success("Login successful!");
     }, 1000);
