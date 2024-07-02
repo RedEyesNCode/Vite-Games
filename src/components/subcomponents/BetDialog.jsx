@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { fetchWingoContestTime, placeWingoBet } from "../../api/api_wingo";
 import LocalStorageManager from "../../session/LocalStorageManager";
 import { LOCAL_STORAGE_KEY } from "../../session/Constants";
+import { ToastContainer, toast } from "react-toastify";
 
 function BetDialog({ onClose, betNumber }) {
   const [select7, setSelect7] = useState(7);
@@ -75,11 +76,13 @@ function BetDialog({ onClose, betNumber }) {
       };
       const placeBetResponse = await placeWingoBet(rawJson);
       if(placeBetResponse.code ==400){
-        window.alert(placeBetResponse.message);
+        toast.warn(placeBetResponse.message);
+
       }else{
-        window.alert(placeBetResponse.message);
+        toast.warn(placeBetResponse.message);
+
         onClose();
-        
+
 
       }
 
@@ -128,6 +131,8 @@ function BetDialog({ onClose, betNumber }) {
 
   return (
     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+      
+      <ToastContainer/>
       {contestData && (
         <div className="bg-gray-800 rounded-lg shadow-lg p-6 w-11/12 md:max-w-md">
           <h2 className="text-yellow-400 text-2xl mb-4">Win Go 3 Min</h2>

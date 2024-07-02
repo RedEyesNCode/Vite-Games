@@ -132,28 +132,25 @@ export const CBetDashboard = (props) => {
 
   const [isRegisterDialog, setRegisterDialog] = useState(false);
 
-  const [isDragonTigerGame,setDragonTigerGame] = useState(false);
+  const [isDragonTigerGame, setDragonTigerGame] = useState(false);
   const navigate = useNavigate();
 
-  const userSession = LocalStorageManager.getItem(LOCAL_STORAGE_KEY.LOGIN_RESPONSE);
-
-
+  const userSession = LocalStorageManager.getItem(
+    LOCAL_STORAGE_KEY.LOGIN_RESPONSE
+  );
 
   const handleShowRegisterDialog = () => {
     setRegisterDialog(true);
   };
   const handleGameShow = (url) => {
-    if(url=="/src/components/assets/wingo_image.png"){
+    if (url == "/src/components/assets/wingo_image.png") {
       //wingo_dashboard
-      window.alert(userSession.data.demoAmount);
 
-      navigate('/wingodashboard')
-    }else if(url=="/src/components/assets/dragon_tiger_image.jpg"){
+      navigate("/wingodashboard");
+    } else if (url == "/src/components/assets/dragon_tiger_image.jpg") {
       //dragon-tiger
-      navigate('/dragontiger')
+      navigate("/dragontiger");
     }
-    
-
   };
 
   const handleShowLoginDialog = () => {
@@ -176,8 +173,8 @@ export const CBetDashboard = (props) => {
     }
   };
   return (
-    <div className="fixed top-0 left-0 w-full h-full bg-slate-900 overflow-hidden mx-auto flex items-center justify-center">
-      <main className="flex flex-col w-screen bg-slate-800 h-screen mx-auto relative">
+    <div className="flex flex-col h-screen">
+      <main className="flex flex-col w-full bg-slate-800 relative overscroll-x-none overflow-y-auto flex-grow">
         <ToastContainer />
 
         {isSideNavFrame && (
@@ -193,149 +190,157 @@ export const CBetDashboard = (props) => {
         )}
         {isRegisterDialog && (
           <div className="absolute top-0 left-0 w-[250px] h-full z-50">
-            <GlobalRegisterDialog handleClose={() => setRegisterDialog(false)} />
+            <GlobalRegisterDialog
+              handleClose={() => setRegisterDialog(false)}
+            />
           </div>
         )}
 
         <div
-          className="flex-grow overflow-y-auto h-screen bg-cover bg-center"
+          className="h-full bg-cover bg-center"
           style={{ backgroundImage: `url(${dashboardbackground})` }}
         >
-          {isHomeFrame && !isOfferFrame && (
-            <div className="flex-grow overflow-y-auto relative">
-              <CBetNav
-                handleClickNav={() => setSideNavFrame(true)}
-                handleLoginDialog={handleShowLoginDialog}
-                handleRegisterDialog={handleShowRegisterDialog}
-              />
-              <CBetBanner />
-              <div className="relative">
-                <img
-                  src={jackpotbanner}
-                  alt="Jackpot Banner"
-                  className="h-[120px] w-[380px] mt-2 mx-2"
-                />
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white font-normal font-mono rounded-xl bg-slate-800 px-3 py-1 text-[11px]">
-                  JACKPOT
-                </div>
-                <div className="absolute top-1/2 mt-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-yellow-400 font-normal font-mono rounded-xl px-3 py-1 text-[18px]">
-                  2,23,24,990
-                </div>
-              </div>
-              <div className="flex flex-row items-center justify-between mt-1">
-                <PiSpeakerHighFill
-                  color="white"
-                  className="w-[25px] h-[25px] m-1"
-                />
-                <div className="text-slate-500 font-bold text-[10px] font-sans">
-                  Download the APP and start playing games to make money
-                </div>
-                <TbMessage2Code
-                  color="white"
-                  className="w-[25px] h-[25px] m-1"
-                />
-              </div>
-              <GameSlideMenu />
-              <DynamicGameMenuCard imageUrls={imageUrls} handleGameClick={(url) =>handleGameShow(url)} />
+          <div className="w-screen">
+            
+            {isHomeFrame && !isOfferFrame && (
+              <div className="">
+                <CBetNav
+              handleClickNav={() => setSideNavFrame(true)}
+              handleLoginDialog={handleShowLoginDialog}
+              handleRegisterDialog={handleShowRegisterDialog}
+            />
+                <div className=" mt-10 flex-grow overflow-y-auto overflow-x-none h-full bg-cover bg-center pt-16">
+                  <CBetBanner />
+                  <div className="relative w-[80%]">
+                    <img
+                      src={jackpotbanner}
+                      alt="Jackpot Banner"
+                      className="h-[120px] w-[380px] mt-2 mx-2"
+                    />
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white font-normal font-mono rounded-xl bg-slate-800 px-3 py-1 text-[11px]">
+                      JACKPOT
+                    </div>
+                    <div className="absolute top-1/2 mt-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-yellow-400 font-normal font-mono rounded-xl px-3 py-1 text-[18px]">
+                      2,23,24,990
+                    </div>
+                  </div>
+                  <div className="flex flex-row items-center justify-between mt-1 w-[75%]">
+                    <PiSpeakerHighFill
+                      color="white"
+                      className="w-[25px] h-[25px] m-1"
+                    />
+                    <div className="text-slate-500 font-bold text-[10px] font-sans">
+                      Download the APP and start playing games to make money
+                    </div>
+                    <TbMessage2Code
+                      color="white"
+                      className="w-[25px] h-[25px] m-1"
+                    />
+                  </div>
+                  <GameSlideMenu />
+                  <DynamicGameMenuCard
+                    imageUrls={imageUrls}
+                    handleGameClick={(url) => handleGameShow(url)}
+                  />
 
-              <div className="w-full h-[2px] bg-slate-600 mt-2"></div>
+                  <div className="w-full h-[2px] bg-slate-600 mt-2"></div>
 
-              <div className="flex flex-row m-2 items-center p-2">
-                <img
-                  src={iconCard}
-                  alt="game_icon"
-                  className="w-[26px] h-[26px] justify-center items-center object-fit"
-                />
-                <div className="ml-1 text-white font-sans font-medium text-[14px]">
-                  Cards
+                  <div className="flex flex-row m-2 items-center p-2">
+                    <img
+                      src={iconCard}
+                      alt="game_icon"
+                      className="w-[26px] h-[26px] justify-center items-center object-fit"
+                    />
+                    <div className="ml-1 text-white font-sans font-medium text-[14px]">
+                      Cards
+                    </div>
+                  </div>
+                  <DynamicGameMenuCard imageUrls={cardGamesUrl} />
+
+                  <div className="flex flex-row m-2 items-center p-2">
+                    <img
+                      src={iconCard}
+                      alt="game_icon"
+                      className="w-[26px] h-[26px] justify-center items-center object-fit"
+                    />
+                    <div className="ml-1 text-white font-sans font-medium text-[14px]">
+                      Slots
+                    </div>
+                  </div>
+                  <DynamicGameMenuCard imageUrls={slotGameUrls} />
+
+                  <div className="flex flex-row m-2 items-center p-2">
+                    <img
+                      src={iconCard}
+                      alt="game_icon"
+                      className="w-[26px] h-[26px] justify-center items-center object-fit"
+                    />
+                    <div className="ml-1 text-white font-sans font-medium text-[14px]">
+                      Sports
+                    </div>
+                  </div>
+                  <DynamicGameMenuCard imageUrls={sportsGames} />
+
+                  <div className="flex flex-row m-2 items-center p-2">
+                    <img
+                      src={iconCard}
+                      alt="game_icon"
+                      className="w-[26px] h-[26px] justify-center items-center object-fit"
+                    />
+                    <div className="ml-1 text-white font-sans font-medium text-[14px]">
+                      Fishing
+                    </div>
+                  </div>
+                  <DynamicGameMenuCard imageUrls={fishingGameUrls} />
+
+                  <div className="flex flex-row m-2 items-center p-2">
+                    <img
+                      src={iconCard}
+                      alt="game_icon"
+                      className="w-[26px] h-[26px] justify-center items-center object-fit"
+                    />
+                    <div className="ml-1 text-white font-sans font-medium text-[14px]">
+                      Blockchain
+                    </div>
+                  </div>
+                  <DynamicGameMenuCard imageUrls={blockChainGames} />
+
+                  <div className="flex flex-row m-2 items-center p-2">
+                    <img
+                      src={iconCard}
+                      alt="game_icon"
+                      className="w-[26px] h-[26px] justify-center items-center object-fit"
+                    />
+                    <div className="ml-1 text-white font-sans font-medium text-[14px]">
+                      Lottery
+                    </div>
+                  </div>
+                  <DynamicGameMenuCard imageUrls={lotteryGames} />
+
+                  <CBetFooter />
                 </div>
-              </div>
-              <DynamicGameMenuCard imageUrls={cardGamesUrl} />
 
-              <div className="flex flex-row m-2 items-center p-2">
-                <img
-                  src={iconCard}
-                  alt="game_icon"
-                  className="w-[26px] h-[26px] justify-center items-center object-fit"
-                />
-                <div className="ml-1 text-white font-sans font-medium text-[14px]">
-                  Slots
-                </div>
               </div>
-              <DynamicGameMenuCard imageUrls={slotGameUrls} />
+            )}
+                  <CBetBottomNav handleItemClick={handleNavChange} />
 
-              <div className="flex flex-row m-2 items-center p-2">
-                <img
-                  src={iconCard}
-                  alt="game_icon"
-                  className="w-[26px] h-[26px] justify-center items-center object-fit"
-                />
-                <div className="ml-1 text-white font-sans font-medium text-[14px]">
-                  Sports
-                </div>
-              </div>
-              <DynamicGameMenuCard imageUrls={sportsGames} />
-
-              <div className="flex flex-row m-2 items-center p-2">
-                <img
-                  src={iconCard}
-                  alt="game_icon"
-                  className="w-[26px] h-[26px] justify-center items-center object-fit"
-                />
-                <div className="ml-1 text-white font-sans font-medium text-[14px]">
-                  Fishing
-                </div>
-              </div>
-              <DynamicGameMenuCard imageUrls={fishingGameUrls} />
-
-              <div className="flex flex-row m-2 items-center p-2">
-                <img
-                  src={iconCard}
-                  alt="game_icon"
-                  className="w-[26px] h-[26px] justify-center items-center object-fit"
-                />
-                <div className="ml-1 text-white font-sans font-medium text-[14px]">
-                  Blockchain
-                </div>
-              </div>
-              <DynamicGameMenuCard imageUrls={blockChainGames} />
-
-              <div className="flex flex-row m-2 items-center p-2">
-                <img
-                  src={iconCard}
-                  alt="game_icon"
-                  className="w-[26px] h-[26px] justify-center items-center object-fit"
-                />
-                <div className="ml-1 text-white font-sans font-medium text-[14px]">
-                  Lottery
-                </div>
-              </div>
-              <DynamicGameMenuCard imageUrls={lotteryGames} />
-
-              <CBetFooter />
-            </div>
-          )}
+          </div>
 
           {isOfferFrame && (
             <div className="flex flex-col overflow-hidden">
-              <CBetNav handleClickNav={() => setSideNavFrame(true)} />
               <CbetOffers />
             </div>
           )}
 
           {isProfileFrame && (
             <div className="flex flex-col overflow-hidden">
-              <CBetNav handleClickNav={() => setSideNavFrame(true)} />
               <CBetProfile />
             </div>
           )}
-          {isDragonTigerGame && (
-            <PhaserGame/>
-          )}
+          {isDragonTigerGame && <PhaserGame />}
         </div>
-
-        <CBetBottomNav handleItemClick={handleNavChange} />
       </main>
+
     </div>
   );
 };

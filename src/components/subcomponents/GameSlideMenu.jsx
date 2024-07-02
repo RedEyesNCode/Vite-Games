@@ -22,7 +22,7 @@ function GameSlideMenu() {
   };
 
   return (
-    <div className="relative overflow-hidden bg-gray-800 rounded-lg shadow-md items-center">
+    <div className="relative overflow-hidden bg-gray-800 rounded-lg shadow-md items-center w-[80%]">
       <div
         className="flex transition-transform duration-300 ease-in-out whitespace-nowrap items-center justify-center"
         style={{ transform: `translateX(-${activeIndex * 100}%)` }}

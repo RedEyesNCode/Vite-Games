@@ -38,7 +38,7 @@ const CBetBanner = () => {
   };
 
   return (
-    <div className="relative w-screen">
+    <div className="relative  w-[80%]">
       <div className="flex">
         {images.map((image, index) => (
           <div

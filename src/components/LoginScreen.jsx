@@ -48,7 +48,7 @@ const LoginScreen = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 w-screen max-w-[480px] h-screen bg-slate-900 overflow-hidden flex items-center justify-center">
+    <div className="fixed top-0 left-0 w-screen  h-screen bg-slate-900 overflow-hidden flex items-center justify-center">
       <div className="w-screen border-[1px] border-slate-600 h-screen mx-auto flex flex-col items-center bg-slate-800 p-2">
         <ToastContainer 
           position="top-center"
@@ -84,12 +84,12 @@ const LoginScreen = () => {
         <div className="flex flex-col justify-center items-center bg-slate-800 w-full">
           <button
             onClick={handleClickLogin}
-            className="bg-yellow-400 w-full text-brown-600 font-semibold py-2 px-8 rounded-xl shadow-md hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50"
+            className="bg-yellow-400 w-[40%] text-brown-600 font-semibold py-2 px-8 rounded-xl shadow-md hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50"
           >
             Login
           </button>
           <div className="h-[20px]"></div>
-          <button onClick={handleRegisterClick} className="border-[2px] border-yellow-400 w-full text-black font-semibold py-2 px-8 rounded-xl shadow-md">
+          <button onClick={handleRegisterClick} className="border-[2px] border-yellow-400 w-[40%] text-black font-semibold py-2 px-8 rounded-xl shadow-md">
             Register
           </button>
         </div>

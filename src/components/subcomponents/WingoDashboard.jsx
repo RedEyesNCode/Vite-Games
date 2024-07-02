@@ -18,19 +18,33 @@ import { MdArrowBackIos } from "react-icons/md";
 import {
   fetchContestHistoryByDuration,
   fetchWingoContestTime,
+  getUserGeneralTransactions,
 } from "../../api/api_wingo";
 import { toast } from "react-toastify";
 import WalletCard from "./WalletCard";
+import LocalStorageManager from "../../session/LocalStorageManager";
+import { LOCAL_STORAGE_KEY } from "../../session/Constants";
 export const WingoDashboard = (props) => {
   const [enterContestDialogOpen, setEnterContestDialogOpen] = useState(false);
   const [chosenColor, setChosenColor] = useState(""); // State for chosen color
   const [chosenNumber, setChosenNumber] = useState(""); // State for chosen number
-  const [selectedOption, setSelectedOption] = useState(null); // Initially, no option is selected
+  const [selectedOption, setSelectedOption] = useState('Game History'); // Initially, no option is selected
   const navigate = useNavigate();
   const [contestHistoryData, setContestHistoryData] = useState(null);
+  const [userTransactionData,setUserTransactionData] = useState(null);
+
+  const [isContestHistoryFrame,setContestHistoryFrame] = useState(false);
+  const userSession = LocalStorageManager.getItem(LOCAL_STORAGE_KEY.LOGIN_RESPONSE);
+
+  const closeContestHistoryFrame = () => {
+    setContestHistoryFrame(false);
+
+  }
+
 
   const colors = ["red", "green", "violet"];
   const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  
 
   const tokenImages = {
     0: zeroToken,
@@ -57,6 +71,21 @@ export const WingoDashboard = (props) => {
         return "bg-gray-400"; // Default color
     }
   };
+
+  const callUserTransactionsAPI = async () => {
+    try {
+      const rawJson = { userId: userSession.data._id };
+
+      const userTransactionResponse =
+        await getUserGeneralTransactions(rawJson);
+
+
+      setUserTransactionData(userTransactionResponse);
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
 
   const callContestHistoryAPI = async () => {
     try {
@@ -98,6 +127,8 @@ export const WingoDashboard = (props) => {
       const contest3 = contestData["3"];
       console.log("Contest 3 details:", contest3);
       callContestHistoryAPI();
+      callUserTransactionsAPI();
+
 
     } catch (error) {
       alert(
@@ -110,8 +141,16 @@ export const WingoDashboard = (props) => {
   useEffect(() => {
     callContestTimeAPI();
   }, []);
-
+  useEffect(() => {
+    callContestHistoryAPI();
+  }, [isContestHistoryFrame]);
   const handleClick = (itemName) => {
+    if(itemName=="Game History"){
+      setContestHistoryFrame(false);
+    }else{
+      setContestHistoryFrame(true);
+
+    }
     setSelectedOption(itemName); // Update the selected option on click
   };
 
@@ -272,34 +311,66 @@ export const WingoDashboard = (props) => {
               </div>
             ))}
           </div>
-          <div className="flex flex-col  p-1 mt-2 bg-slate-800 rounded-xl  border-[1px]  w-full">
-            <div className="flex flex-row justify-between gap-4 items-center bg-[#1f2937] p-2 rounded-md text-white font-semibold text-[18px]">
-              <div className="p-2 text-[15px]">Period</div>
-              <div className="flex-1 text-center p-2 text-[15px]">Number</div>
-              <div className="px-2 text-[15px]">Color</div>
-            </div>
-            {contestHistoryData !=null && contestHistoryData.data.map((entry) => (
-              <div
-                key={entry._id} // Always use unique keys for mapped elements
-                className="flex flex-row justify-between gap-4 items-center p-2 rounded-md text-white"
-              >
-                <div className="p-2 text-[15px]">{entry._id.slice(-5)}</div>{" "}
-                {/* Display last 5 characters */}
-                <div className="flex-2 justify-center">
-                  <img
-                    src={tokenImages[entry.resultNumber] || markImage}
-                    className="w-[24px] h-[24px]"
-                    onClick={() => handleNumberClick(9)}
-                  ></img>
-                </div>
-                <div className="px-2 text-[15px]">
-                   <div 
-              className={`h-4 w-4 rounded-full mr-2 ${getColorClass(entry.resultColor)}`} 
-            />
-                </div>
-              </div>
-            ))}
-          </div>
+          
+          
+          {!isContestHistoryFrame && (
+             <div className="flex flex-col  p-1 mt-2 bg-slate-800 rounded-xl  border-[1px]  w-full">
+             <div className="flex flex-row justify-between gap-4 items-center bg-[#1f2937] p-2 rounded-md text-white font-semibold text-[18px]">
+               <div className="p-2 text-[15px]">Period</div>
+               <div className="flex-1 text-center p-2 text-[15px]">Number</div>
+               <div className="px-2 text-[15px]">Color</div>
+             </div>
+             {contestHistoryData !=null && contestHistoryData.data.map((entry) => (
+               <div
+                 key={entry._id} // Always use unique keys for mapped elements
+                 className="flex flex-row justify-between gap-4 items-center p-2 rounded-md text-white"
+               >
+                 <div className="p-2 text-[15px]">{entry._id.slice(-5)}</div>{" "}
+                 {/* Display last 5 characters */}
+                 <div className="flex-2 justify-center">
+                   <img
+                     src={tokenImages[entry.resultNumber] || markImage}
+                     className="w-[24px] h-[24px]"
+                     onClick={() => handleNumberClick(9)}
+                   ></img>
+                 </div>
+                 <div className="px-2 text-[15px]">
+                    <div 
+               className={`h-4 w-4 rounded-full mr-2 ${getColorClass(entry.resultColor)}`} 
+             />
+                 </div>
+               </div>
+             ))}
+           </div>
+          )}
+
+          {isContestHistoryFrame && userTransactionData!=null && (
+             <div className="text-white text-[12px] w-screen">
+             <table className="w-screen">
+               <thead>
+                 <tr>
+                   <th>Transaction ID</th>
+                   <th>Amount</th>
+                
+                   <th>Timestamp</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 {userTransactionData.data.map(transaction => (
+                   <tr key={transaction._id} className="p-1 m-2">
+                     <td>{transaction.transactionId}</td>
+                     <td>{transaction.amount}</td>
+                
+                     <td>{new Date(transaction.timestamp).toLocaleString()}</td> 
+                   </tr>
+                 ))}
+               </tbody>
+             </table>
+           </div>
+
+
+          )}
+         
         </div>
         {enterContestDialogOpen && (
           <BetDialog

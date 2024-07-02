@@ -15,8 +15,10 @@ const CBetBottomNav = ({handleItemClick}) => {
   ];
 
   return (
-        <div className=" min-w-fit mb-5  left-0 w-screen    bg-gray-800 p-2 flex justify-around">
-        {navItems.map((item, index) => (
+        <div className="w-screen z-10 bg-slate-900 p-4 ">
+
+          <div className='flex flex-row justify-between'>
+          {navItems.map((item, index) => (
             <a
             key={index}
             onClick={() => changeNav(item.label)}
@@ -26,6 +28,8 @@ const CBetBottomNav = ({handleItemClick}) => {
             <span className="text-xs">{item.label}</span>
             </a>
         ))}
+          </div>
+       
         </div>
   );
 };

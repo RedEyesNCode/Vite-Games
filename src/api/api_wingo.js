@@ -20,3 +20,10 @@ export const fetchWingoContestTime = async () => {
       return response;
     } catch (error) { }
   };
+
+  export const getUserGeneralTransactions = async (data) => {
+    try {
+      const response = await apiService("get-user-general-transactions", "POST",data );
+      return response;
+    } catch (error) { }
+  };
